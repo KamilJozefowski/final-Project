@@ -2,19 +2,21 @@ package com.kodilla.backend.mapper;
 
 import com.kodilla.backend.domain.Room;
 import com.kodilla.backend.domain.RoomDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class RoomMapper {
     public Room mapToRoom (final RoomDto roomDto){
         return new Room(
                 roomDto.getId(),
                 roomDto.getRoomNumber(),
                 roomDto.getRoomType(),
-                roomDto.getBeds(),
                 roomDto.getMaxSleeps(),
-                roomDto.getPrice());
+                roomDto.getPrice(),
+                roomDto.getBeds());
     }
 
     public RoomDto mapToRoomDto(final Room room){
@@ -22,9 +24,9 @@ public class RoomMapper {
                 room.getId(),
                 room.getRoomNumber(),
                 room.getRoomType(),
-                room.getBeds(),
                 room.getMaxSleeps(),
-                room.getPrice());
+                room.getPrice(),
+                room.getBed());
     }
 
     public List<RoomDto> mapToRoomDtoList(final List<Room> taskList){

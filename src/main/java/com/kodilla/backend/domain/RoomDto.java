@@ -10,14 +10,9 @@ import lombok.NoArgsConstructor;
 public class RoomDto {
 
     private Long id;
-
     private Long roomNumber;
-
     private String roomType;
-
-    private Bed beds;
-
     private Integer maxSleeps;
-
     private Double price;
+    private Bed beds;
 }
