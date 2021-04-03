@@ -5,33 +5,50 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "room")
 public class Room {
+    private Long id;
+    private Long roomNumber;
+    private String roomType;
+    private Integer maxSleeps;
+    private Double price;
+    private Bed bed;
 
     @Id
     @GeneratedValue
-    private Long id;
+    public Long getId() {
+        return id;
+    }
 
     @Column(name = "room_number")
     @UniqueElements
-    private Long roomNumber;
+    public Long getRoomNumber() {
+        return roomNumber;
+    }
 
-    @Column(name = "room_type")
-    private String roomType;
-
-    private Bed beds;
+    @Column(name = "ROOM_TYPE")
+    public String getRoomType() {
+        return roomType;
+    }
 
     @Column(name = "max_sleeps")
-    private Integer maxSleeps;
+    public Integer getMaxSleeps() {
+        return maxSleeps;
+    }
 
     @Column(name = "price")
-    private Double price;
+    public Double getPrice() {
+        return price;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "BED_ID")
+    public Bed getBed() {
+        return bed;
+    }
 }
